@@ -31,8 +31,7 @@ public class DropDownModule : GroundedControllerAbilityModule
     //Called every frame when inactive (to see if it could be) and when active (to see if it should not be)
     public override bool IsApplicable(){
         if (m_ControlledCollider.IsGrounded() &&
-            m_CharacterController.GetJumpIsCached() &&
-            ((DoesInputExist("Crouch") && GetButtonInput("Crouch").m_IsPressed) || GetDirInput("Move").m_Direction == DirectionInput.Direction.Down))
+            (GetDirInput("Move").m_Direction == DirectionInput.Direction.Down))
         {
             if (m_ControlledCollider.GetGroundedInfo().GetGroundTransform().GetComponentInChildren<OneWayPlatform>())
             {
