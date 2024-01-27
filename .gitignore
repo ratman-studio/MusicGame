@@ -154,3 +154,7 @@ sysinfo.txt
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # End of https://www.toptal.com/developers/gitignore/api/unity,rider
+
+# Log-files
+fmod.log
+fmod_editor.log
