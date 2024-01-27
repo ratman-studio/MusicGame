@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 //--------------------------------------------------------------------
 //GroundedCharacterController is an CharacterControllerBase which implements the core of a platforming character.
@@ -76,7 +77,7 @@ public class GroundedCharacterController : CharacterControllerBase
     //Jump input is cached to allow for tolerances (jumping being recognized as valid just before/after touching a jumpable surface
     protected override void UpdateController()
     {
-        DecreaseBoostLevel(Time.fixedTime);
+        DecreaseBoostLevel(Time.fixedDeltaTime);
 
         bool isGrounded = m_ControlledCollider.IsGrounded();
         if (isGrounded)
@@ -499,7 +500,7 @@ public class GroundedCharacterController : CharacterControllerBase
     ///  Boost
     /// </summary>
 
-    private float boostDecreaseRatio = .005f;
+    private float boostDecreaseRatio = 2f;
     private float MaxBoostLevel = 15;
     private float maxSpeed = 20;
 
@@ -528,5 +529,21 @@ public class GroundedCharacterController : CharacterControllerBase
     {
         Debug.Log("Shit");
         OnShit?.Invoke();
+    }
+
+    private void OnEnable()
+    {
+        InSceneLevelSwitcher.OnLevelStart += ResetStart;
+    }
+
+    private void OnDisable()
+    {
+        InSceneLevelSwitcher.OnLevelStart -= ResetStart;
+    }
+
+    private void ResetStart()
+    {
+        BoostLevel = 0;
+        OnBoostLevelChanged();
     }
 }

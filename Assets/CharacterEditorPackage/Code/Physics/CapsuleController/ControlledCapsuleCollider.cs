@@ -29,7 +29,9 @@ public partial class ControlledCapsuleCollider : ControlledCollider
         {
             Debug.LogError("ControlledCapsuleCollider Layermask will hit the player itself! Please uncheck the \"" + LayerMask.LayerToName(gameObject.layer) + "\" layer in the ControlledCapsuleCollider collision LayerMask, or switch the player GameObject layer to one not covered by that LayerMask");
         }
+
     }
+
 
     void Update()
     {

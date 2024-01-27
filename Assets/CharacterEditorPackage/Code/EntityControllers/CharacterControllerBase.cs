@@ -38,6 +38,7 @@ public abstract class CharacterControllerBase : MonoBehaviour
             return;
         }
         m_ControlledCollider.UpdateContextInfo();
+        //Debug.Log("udpdate controller ");
         UpdateController();
         if (m_AbilityManager != null)
         {
@@ -112,6 +113,7 @@ public abstract class CharacterControllerBase : MonoBehaviour
         }
         if (m_ControlledCollider != null)
         {
+
             m_ControlledCollider.SetVelocity(Vector2.zero);
             m_ControlledCollider.SetPosition(a_Position);
             m_ControlledCollider.UpdateContextInfo();
