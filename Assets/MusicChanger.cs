@@ -28,7 +28,7 @@ public class MusicChanger : MonoBehaviour
 
     private void StartMusic()
     {
-        GlobalTrigger.TriggerEvent()
+
     }
 
     // Update is called once per frame
