@@ -41,17 +41,16 @@ public class SprintModule : GroundedControllerAbilityModule
     //Query whether this module can be active, given the current state of the character controller (velocity, isGrounded etc.)
     //Called every frame when inactive (to see if it could be) and when active (to see if it should not be)
     public override bool IsApplicable(){
-        if (!DoesInputExist("Sprint"))
-        {
-            Debug.LogError("Input for module " + GetName() + " not set up");
-            return false;
-        }
-        if (GetButtonInput("Sprint").m_IsPressed && m_ControlledCollider.IsGrounded())
+
+        if (m_CharacterController.BoostLevel>=BoostLevelMin && m_CharacterController.BoostLevel < BoostLevelMax)
         {
             return true;
         }
         return false;
     }
+
+    public float BoostLevelMin;
+    public float BoostLevelMax;
 
     //Get the name of the animation state that should be playing for this module. 
     public override string GetSpriteState(){

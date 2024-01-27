@@ -10,27 +10,15 @@ public class TopHudControl : MonoBehaviour
      private Slider boostSlider;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void UpdateBoostLevel(float boostLevel, float maxBoost)
     {
-        boostSlider.maxValue = maxBoost;
         boostSlider.value = boostLevel;
+        boostSlider.maxValue = maxBoost;
     }
 
-    public void UpdateSpeedLevel(float boostLevel, float maxBoost)
+    public void UpdateSpeedLevel(float currentSpeed, float maxSpeed)
     {
-        boostSlider.maxValue = maxBoost;
-        boostSlider.value = boostLevel;
+        speedSlider.value = currentSpeed;
+        speedSlider.maxValue = maxSpeed;
     }
 }

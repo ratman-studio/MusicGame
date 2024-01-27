@@ -43,6 +43,7 @@ public class GroundedCharacterController : CharacterControllerBase
     public event OnJumpEvent OnJump;
 
     protected ButtonInput m_JumpInput;
+    public float BoostLevel { get; set; }
 
     //Called by Unity upon adding a new component to an object, or when Reset is selected in the context menu. Used here to provide default values.
     //Also used when fixing up components using the CharacterFixEditor button
@@ -74,6 +75,8 @@ public class GroundedCharacterController : CharacterControllerBase
     //Jump input is cached to allow for tolerances (jumping being recognized as valid just before/after touching a jumpable surface
     protected override void UpdateController()
     {
+        DecreaseBoostLevel(Time.fixedTime);
+
         bool isGrounded = m_ControlledCollider.IsGrounded();
         if (isGrounded)
         {
@@ -104,6 +107,7 @@ public class GroundedCharacterController : CharacterControllerBase
             }
         }
     }
+
 
     //Default update, used when no movement abilities are valid
     //Combines input and other forces to update the velocity, then moves the collider using that velocity
@@ -140,9 +144,9 @@ public class GroundedCharacterController : CharacterControllerBase
         TryAligningWithGround();
     }
 
-    public float GetCurrentVelocity()
+    public Vector2 GetCurrentVelocity()
     {
-        return m_ControlledCollider.GetVelocity().magnitude;
+        return m_ControlledCollider.GetVelocity();
     }
     //Default jump using this controller's jump values.
     public bool TryDefaultJump()
@@ -489,4 +493,40 @@ public class GroundedCharacterController : CharacterControllerBase
             }
         }
     }
+
+    /// <summary>
+    ///  Boost
+    /// </summary>
+
+    private float boostDecreaseRatio = .05f;
+    private float MaxBoostLevel = 15;
+    private float maxSpeed = 15;
+
+    private void DecreaseBoostLevel(float time)
+    {
+        BoostLevel -= boostDecreaseRatio * time;
+        OnBoostLevelChanged();
+    }
+
+
+    private void OnBoostLevelChanged()
+    {
+        // clamp boost
+        BoostLevel = Mathf.Clamp(BoostLevel, 0, MaxBoostLevel);
+        HudSystem.Get().topHud.UpdateBoostLevel(BoostLevel, MaxBoostLevel);
+        HudSystem.Get().topHud.UpdateSpeedLevel(Mathf.Abs(GetCurrentVelocity().x), 15);
+        // update boost hud
+    }
+
+    public void AddBoostBonus(float points)
+    {
+        BoostLevel += points;
+    }
+
+    private void RefreshMaxSpeed()
+    {
+
+    }
+
+
 }

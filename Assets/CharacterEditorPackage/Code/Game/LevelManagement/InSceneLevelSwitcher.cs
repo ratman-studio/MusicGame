@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TMPro;
 
 //--------------------------------------------------------------------
 //InSceneLevelSwitcher keeps track of spawnpoints and respawning
@@ -89,5 +90,10 @@ public class InSceneLevelSwitcher : MonoBehaviour {
         {
             OnLevelStart();
         }    
+    }
+
+    public void AddBonus(float points)
+    {
+        (m_Character as GroundedCharacterController).AddBoostBonus(points);
     }
 }
