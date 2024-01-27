@@ -498,7 +498,7 @@ public class GroundedCharacterController : CharacterControllerBase
     ///  Boost
     /// </summary>
 
-    private float boostDecreaseRatio = .05f;
+    private float boostDecreaseRatio = .005f;
     private float MaxBoostLevel = 15;
     private float maxSpeed = 15;
 

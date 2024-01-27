@@ -42,7 +42,8 @@ public class SprintModule : GroundedControllerAbilityModule
     //Called every frame when inactive (to see if it could be) and when active (to see if it should not be)
     public override bool IsApplicable(){
 
-        if (m_CharacterController.BoostLevel>=BoostLevelMin && m_CharacterController.BoostLevel < BoostLevelMax)
+        Debug.Log("booster:"+ m_CharacterController.BoostLevel);
+        if (m_CharacterController.BoostLevel>=BoostLevelMin)
         {
             return true;
         }
@@ -50,7 +51,7 @@ public class SprintModule : GroundedControllerAbilityModule
     }
 
     public float BoostLevelMin;
-    public float BoostLevelMax;
+
 
     //Get the name of the animation state that should be playing for this module. 
     public override string GetSpriteState(){
