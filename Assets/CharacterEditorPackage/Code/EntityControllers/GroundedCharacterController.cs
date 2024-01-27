@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using FMODUnity;
+
 //--------------------------------------------------------------------
 //GroundedCharacterController is an CharacterControllerBase which implements the core of a platforming character.
 //It is the CharacterControllerBase used for all the character controllers
@@ -213,6 +215,7 @@ public class GroundedCharacterController : CharacterControllerBase
         }
         m_LastJumpTime = Time.fixedTime;
         LaunchCharacter(a_Velocity, a_OverridePreviousVelocity);
+        JumpSound.Play();
         if (OnJump != null)
         {
             OnJump();
@@ -525,6 +528,8 @@ public class GroundedCharacterController : CharacterControllerBase
         BoostLevel += points;
     }
 
+
+
     public void GiveAShit()
     {
         Debug.Log("Shit");
@@ -540,10 +545,17 @@ public class GroundedCharacterController : CharacterControllerBase
     {
         InSceneLevelSwitcher.OnLevelStart -= ResetStart;
     }
-
+    [SerializeField]
+    private StudioEventEmitter StartSound;
+    [SerializeField]
+    private StudioEventEmitter JumpSound;
+    [SerializeField]
+    private StudioGlobalParameterTrigger GlobalTrigger;
     private void ResetStart()
     {
+        StartSound.Play();
         BoostLevel = 0;
         OnBoostLevelChanged();
+
     }
 }

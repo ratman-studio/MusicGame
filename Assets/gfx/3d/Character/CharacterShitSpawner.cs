@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using FMODUnity;
 using UnityEngine;
 
 public class CharacterShitSpawner : MonoBehaviour
@@ -8,13 +9,16 @@ public class CharacterShitSpawner : MonoBehaviour
     [SerializeField]
     private GameObject ShitPrefab;
     // Start is called before the first frame update
+    [SerializeField] private StudioEventEmitter ShitSound;
     private GroundedCharacterController _characterController;
+
 
     void Start()
     {
         _characterController = FindObjectOfType<GroundedCharacterController>();
          _characterController.OnShit += () =>
          {
+             ShitSound?.Play();
              var clone = Instantiate(ShitPrefab, transform.position, Quaternion.identity,transform.parent);
              var random = new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), Random.Range(-1, 1));
              clone.GetComponent<Rigidbody>()?.AddForce((Vector3.down + random) * 2f,ForceMode.Impulse);

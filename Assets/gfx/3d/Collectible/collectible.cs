@@ -1,4 +1,5 @@
 using System;
+using FMODUnity;
 using UnityEngine;
 
 public class collectible : MonoBehaviour
@@ -6,7 +7,7 @@ public class collectible : MonoBehaviour
     [SerializeField] private float BonusPoints = 5;
     [SerializeField] private float RotateSpeed = 2;
     [SerializeField] private MeshRenderer _renderer;
-
+    [SerializeField] private StudioEventEmitter _emitter;
     private void OnEnable()
     {
         InSceneLevelSwitcher.OnLevelStart += () => Reset();
@@ -19,6 +20,7 @@ public class collectible : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        _emitter.Play();
         gameObject.SetActive(false);
         InSceneLevelSwitcher.Get().AddBonus(BonusPoints);
     }
