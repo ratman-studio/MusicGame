@@ -1,9 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 //--------------------------------------------------------------------
 //When the player enters, respawn them
 //--------------------------------------------------------------------
-public class DeathTrigger : MonoBehaviour {
+public class DeathTrigger : MonoBehaviour
+{
+    [SerializeField]
+    private MeshRenderer _renderer;
+
+    private void OnEnable() => _renderer?.gameObject.SetActive(false);
+
 
     void OnTriggerEnter(Collider a_Collider)
     {
