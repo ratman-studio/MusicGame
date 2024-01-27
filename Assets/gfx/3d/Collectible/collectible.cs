@@ -4,6 +4,7 @@ using UnityEngine;
 public class collectible : MonoBehaviour
 {
     [SerializeField] private float BonusPoints = 5;
+    [SerializeField] private float RotateSpeed = 2;
     [SerializeField] private MeshRenderer _renderer;
 
     private void OnEnable()
@@ -22,4 +23,8 @@ public class collectible : MonoBehaviour
         InSceneLevelSwitcher.Get().AddBonus(BonusPoints);
     }
 
+    private void Update()
+    {
+        this.transform.RotateAround(Vector3.up, RotateSpeed * Time.deltaTime);
+    }
 }

@@ -44,6 +44,7 @@ public class DoubleJumpModule : GroundedControllerAbilityModule
 
         m_CharacterController.Jump(newVelocity);
         m_ControlledCollider.UpdateWithVelocity(m_ControlledCollider.GetVelocity());
+        m_CharacterController.GiveAShit();
     }
 
     //Called whenever this module is inactive and updating (implementation by child modules), useful for cooldown updating etc.

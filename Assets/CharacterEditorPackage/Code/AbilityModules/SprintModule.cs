@@ -42,7 +42,7 @@ public class SprintModule : GroundedControllerAbilityModule
     //Called every frame when inactive (to see if it could be) and when active (to see if it should not be)
     public override bool IsApplicable(){
 
-        Debug.Log("booster:"+ m_CharacterController.BoostLevel);
+
         if (m_CharacterController.BoostLevel>=BoostLevelMin)
         {
             return true;

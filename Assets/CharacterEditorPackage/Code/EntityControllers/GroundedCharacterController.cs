@@ -41,6 +41,7 @@ public class GroundedCharacterController : CharacterControllerBase
 //Jump event (for other scripts to use when the jump is triggered)
     public delegate void OnJumpEvent();
     public event OnJumpEvent OnJump;
+    public event OnJumpEvent OnShit;
 
     protected ButtonInput m_JumpInput;
     public float BoostLevel { get; set; }
@@ -500,7 +501,7 @@ public class GroundedCharacterController : CharacterControllerBase
 
     private float boostDecreaseRatio = .005f;
     private float MaxBoostLevel = 15;
-    private float maxSpeed = 15;
+    private float maxSpeed = 20;
 
     private void DecreaseBoostLevel(float time)
     {
@@ -523,10 +524,9 @@ public class GroundedCharacterController : CharacterControllerBase
         BoostLevel += points;
     }
 
-    private void RefreshMaxSpeed()
+    public void GiveAShit()
     {
-
+        Debug.Log("Shit");
+        OnShit?.Invoke();
     }
-
-
 }
