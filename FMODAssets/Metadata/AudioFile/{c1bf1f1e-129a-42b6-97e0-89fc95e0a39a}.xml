@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{c1bf1f1e-129a-42b6-97e0-89fc95e0a39a}">
+		<property name="assetPath">
+			<value>SFX/Attack-001.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.7838750000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{26e0e549-e399-4fd3-801c-853cd22e2f2f}</destination>
+		</relationship>
+	</object>
+</objects>

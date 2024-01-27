@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{735df4ef-1be0-4a16-bc0c-4e82c3384f54}">
+		<property name="assetPath">
+			<value>SFX/Start Level-018.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.8605208333333334</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{26e0e549-e399-4fd3-801c-853cd22e2f2f}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{4a9cb69b-5a66-46fa-a81f-7091641fcd3d}">
+		<property name="assetPath">
+			<value>Applause/Mistake.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3.5194791666666667</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{26e0e549-e399-4fd3-801c-853cd22e2f2f}</destination>
+		</relationship>
+	</object>
+</objects>
