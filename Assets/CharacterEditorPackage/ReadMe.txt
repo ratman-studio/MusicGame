@@ -1,4 +1,4 @@
-This document explains how to set up and work with the extendable 2D character controller
+ This document explains how to set up and work with the extendable 2D character controller
 
 ------------------------------------------------
 Setup
