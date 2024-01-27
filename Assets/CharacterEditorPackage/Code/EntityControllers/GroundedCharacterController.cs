@@ -139,6 +139,11 @@ public class GroundedCharacterController : CharacterControllerBase
         m_ControlledCollider.UpdateWithVelocity(newVel);
         TryAligningWithGround();
     }
+
+    public float GetCurrentVelocity()
+    {
+        return m_ControlledCollider.GetVelocity().magnitude;
+    }
     //Default jump using this controller's jump values.
     public bool TryDefaultJump()
     {
@@ -383,6 +388,11 @@ public class GroundedCharacterController : CharacterControllerBase
     {
         return m_WalkForce;
     }
+    public void SetWalkForce(float force)
+    {
+        m_WalkForce = force;
+    }
+
     public float GetStoppingForceConstant()
     {
         return m_StoppingForce;
