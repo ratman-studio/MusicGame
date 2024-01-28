@@ -20,27 +20,27 @@ public class SpriteAnimator : MonoBehaviour {
         Interpolate,
         Extrapolate
     }
-    [SerializeField] Animator m_SpriteAnimator = null;
-    [SerializeField] AnimationOffset[] m_AnimOffsets = null;
-    [SerializeField] string m_Prefix = "";
-    [SerializeField] Transform m_SpriteTransformHook = null;
+    [SerializeField] protected Animator m_SpriteAnimator = null;
+    [SerializeField] protected AnimationOffset[] m_AnimOffsets = null;
+    [SerializeField] protected string m_Prefix = "";
+    [SerializeField] protected Transform m_SpriteTransformHook = null;
 
-    [SerializeField] CharacterControllerBase m_CharacterController = null;
-    [SerializeField] ControlledCapsuleCollider m_CapsuleCollider = null;
-    [SerializeField] float m_MoveSpeedThreshhold = 0.0f;
+    [SerializeField] protected CharacterControllerBase m_CharacterController = null;
+    [SerializeField] protected ControlledCapsuleCollider m_CapsuleCollider = null;
+    [SerializeField] protected float m_MoveSpeedThreshhold = 0.0f;
     [SerializeField] SpriteInterpolation m_SpriteInterpolation = SpriteInterpolation.None;
     [SerializeField] float m_InterpolationLimit = 2.0f;
-    [SerializeField] bool m_BlockRotation = false;
+    [SerializeField] protected bool m_BlockRotation = false;
 
-    string m_CurrentAnimationName;
+    protected string m_CurrentAnimationName;
     int m_CurrentIndex;
     float m_CurrentSpeed;
-    Vector2 m_LastGoodDirection;
+    protected Vector2 m_LastGoodDirection;
 
     Vector3 m_LastFixedUpdatePosition;
     Vector3 m_CurrentFixedUpdatePosition;
-    float m_LastZRot;
-    float m_StartHeight;
+    protected float m_LastZRot;
+    protected float m_StartHeight;
 
     void Start()
     {
@@ -65,7 +65,7 @@ public class SpriteAnimator : MonoBehaviour {
         }
     }
 	
-	void Update () 
+	void Update ()
 	{
         if (m_CharacterController == null || m_CharacterController.GetCollider() == null)
         {
@@ -82,54 +82,7 @@ public class SpriteAnimator : MonoBehaviour {
             m_LastGoodDirection = Vector2.right * m_CharacterController.GetInputMovement().x;
         }
         //Rotate and position the capsule according to character velocity and context
-        float zRot = 0.0f;
-        float xScale = 1.0f;
-        if (m_CurrentAnimationName != "")
-        {
-            if (m_CharacterController.GetCollider().IsGrounded())
-            {
-                Vector2 normal = m_CharacterController.GetCollider().GetGroundedInfo().GetNormal();
 
-                xScale = (m_LastGoodDirection.x >= 0.0f) ? 1.0f : -1.0f;
-                zRot = -Mathf.Atan2(normal.x, normal.y) * Mathf.Rad2Deg;
-            }
-            else if (m_CharacterController.GetCollider().IsPartiallyTouchingWall())
-            {
-                Vector2 normal = m_CharacterController.GetCollider().GetSideCastInfo().GetSideNormal();
-                Vector2 up = CState.GetDirectionAlongNormal(Vector2.up, normal);
-                xScale = ((normal.x <= 0.0f) ? 1.0f : -1.0f);
-                zRot = -Mathf.Atan2(up.x, up.y) * Mathf.Rad2Deg;
-
-                m_LastGoodDirection = -normal;
-            }
-            else if (m_CharacterController.GetCollider().IsTouchingEdge())
-            {
-                Vector2 normal = m_CharacterController.GetCollider().GetEdgeCastInfo().GetWallNormal();
-                Vector2 up = CState.GetDirectionAlongNormal(Vector2.up, normal);
-				xScale = ((normal.x <= 0.0f) ? 1.0f : -1.0f);
-                zRot = -Mathf.Atan2(up.x, up.y) * Mathf.Rad2Deg;
-
-                m_LastGoodDirection = -normal;
-            }
-            else
-            {
-				zRot = 0.0f;
-				xScale = (m_LastGoodDirection.x >= 0.0f) ? 1.0f : -1.0f;
-				Vector2 up = m_CharacterController.GetCurrentVisualUp();
-				if (up != Vector2.up)
-				{
-					zRot = -Mathf.Atan2(up.x, up.y) * Mathf.Rad2Deg;
-				}
-                
-            }
-        }
-        if (!m_BlockRotation)
-        { 
-            zRot = Mathf.Lerp(m_LastZRot, zRot, 0.1f);
-            m_SpriteTransformHook.transform.rotation = Quaternion.Euler(0.0f, 0.0f, zRot);
-        }
-        m_SpriteTransformHook.transform.localScale = new Vector3(xScale, 1.0f, 1.0f);
-        m_LastZRot = zRot;
 
         Vector3 startPosition = Vector3.zero;
         //We are being controlled by a different entity, block interpolation
@@ -148,7 +101,7 @@ public class SpriteAnimator : MonoBehaviour {
         StartAnimation(m_CharacterController.GetCurrentSpriteState());
     }
 
-    Vector3 GetInterpolatedPosition()
+    protected Vector3 GetInterpolatedPosition()
     {
         //By taking the difference between Time.time and Time.fixedTime, the SpriteAnimator can determine an interpolationfactor between 0 and 1
         //This essentially places the character somewhere between the last two fixedupdate positions (interpolation) essentially roughly an update in the past), 
@@ -169,7 +122,7 @@ public class SpriteAnimator : MonoBehaviour {
         return position;
     }
 
-    public void StartAnimation(string a_Name)
+    virtual public void StartAnimation(string a_Name)
     {
         if (m_CurrentAnimationName == a_Name)
         {
