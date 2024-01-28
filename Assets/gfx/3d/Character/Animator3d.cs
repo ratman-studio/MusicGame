@@ -67,9 +67,9 @@ public class Animator3d : SpriteAnimator
             case "FallUpSide":
             case "FallStraight":
             case "FallSide":
+            case "Dangling":
                 return "WalkCycle";
 
-            case "Dangling":
             case "Idle" :
             default:
                 return "Idle";
