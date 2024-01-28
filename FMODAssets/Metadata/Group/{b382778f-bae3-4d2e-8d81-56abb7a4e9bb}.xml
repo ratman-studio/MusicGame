@@ -21,6 +21,10 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{925b7fff-b701-4db9-ad28-ccb5c0bdc4e2}" />
-	<object class="DistortionEffect" id="{7dceec49-d781-46d6-9301-818029f8cf8f}" />
+	<object class="DistortionEffect" id="{7dceec49-d781-46d6-9301-818029f8cf8f}">
+		<property name="level">
+			<value>0.25999999</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{fa619e66-9dd3-44ca-ac4c-76f4eb230d4c}" />
 </objects>
