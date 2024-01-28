@@ -518,6 +518,8 @@ public class GroundedCharacterController : CharacterControllerBase
     {
         // clamp boost
         BoostLevel = Mathf.Clamp(BoostLevel, 0, MaxBoostLevel);
+        MusicChanger.Get().SetMistake(1f - BoostLevel/MaxBoostLevel);
+        MusicChanger.Get().SetPlayerSpeed(BoostLevel/MaxBoostLevel);
         HudSystem.Get().topHud.UpdateBoostLevel(BoostLevel, MaxBoostLevel);
         HudSystem.Get().topHud.UpdateSpeedLevel(Mathf.Abs(GetCurrentVelocity().x), 15);
         // update boost hud
@@ -525,6 +527,7 @@ public class GroundedCharacterController : CharacterControllerBase
 
     public void AddBoostBonus(float points)
     {
+        MusicChanger.Get().AddCollectiblePitch();
         BoostLevel += points;
     }
 
@@ -549,8 +552,7 @@ public class GroundedCharacterController : CharacterControllerBase
     private StudioEventEmitter StartSound;
     [SerializeField]
     private StudioEventEmitter JumpSound;
-    [SerializeField]
-    private MusicChanger GlobalTrigger;
+
     private void ResetStart()
     {
         StartSound.Play();
