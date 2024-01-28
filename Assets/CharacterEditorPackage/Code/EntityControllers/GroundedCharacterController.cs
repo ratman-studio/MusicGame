@@ -550,7 +550,7 @@ public class GroundedCharacterController : CharacterControllerBase
     [SerializeField]
     private StudioEventEmitter JumpSound;
     [SerializeField]
-    private StudioGlobalParameterTrigger GlobalTrigger;
+    private MusicChanger GlobalTrigger;
     private void ResetStart()
     {
         StartSound.Play();
