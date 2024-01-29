@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.Events;
 
 //--------------------------------------------------------------------
 //InSceneLevelSwitcher keeps track of spawnpoints and respawning
@@ -10,11 +12,14 @@ public class InSceneLevelSwitcher : MonoBehaviour {
     //Level start event (for other scripts to use when the level is changed)
     public delegate void OnLevelStartEvent();
     public static event OnLevelStartEvent OnLevelStart;
+
     [SerializeField] CharacterControllerBase m_Character = null;
     [SerializeField] InSceneLevel[] m_Levels = null;
     [SerializeField] int m_ButtonSize = 0;
     [SerializeField] int m_ButtonsPerRow = 0;
     [SerializeField] Transform m_Camera = null;
+    [SerializeField]
+    private UnityEvent OnGameStart;
     int m_CurrentIndex;
     
     static InSceneLevelSwitcher g_InSceneLevelSwitcher;
@@ -34,6 +39,7 @@ public class InSceneLevelSwitcher : MonoBehaviour {
 	{
 		StartLevel(0);
         CorrectCamera();
+        OnGameStart?.Invoke();
 	}
 
     void OnGUI()
@@ -59,7 +65,15 @@ public class InSceneLevelSwitcher : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R))
         {
             Respawn();
+            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+                Reset();
         }
+
+    }
+
+    private void Reset()
+    {
+        //throw new NotImplementedException();
     }
 
     public void SetIndex(int a_Index)

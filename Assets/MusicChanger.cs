@@ -3,10 +3,6 @@ using UnityEngine;
 
 public class MusicChanger : MonoBehaviour
 {
-    [SerializeField] private StudioGlobalParameterTrigger PlayerSpeed;
-    [SerializeField] private StudioGlobalParameterTrigger Mistake;
-    [SerializeField] private StudioGlobalParameterTrigger CollectPitch;
-
     [SerializeField] private GroundedCharacterController _characterController;
 
     private void OnEnable() => InSceneLevelSwitcher.OnLevelStart += Reset;
