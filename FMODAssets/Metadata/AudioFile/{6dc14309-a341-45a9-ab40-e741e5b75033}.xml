@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{6dc14309-a341-45a9-ab40-e741e5b75033}">
+		<property name="assetPath">
+			<value>outro pigeon game Audio.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>36.280000000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{26e0e549-e399-4fd3-801c-853cd22e2f2f}</destination>
+		</relationship>
+	</object>
+</objects>
